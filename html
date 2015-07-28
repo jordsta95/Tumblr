@@ -1,0 +1,206 @@
+<html>
+    <head>
+        <title>{Title}</title>
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Raleway:800' rel='stylesheet' type='text/css'>
+        <style>
+body{
+	font-family: 'Raleway', sans-serif;
+	background: #4D6FAC;
+}
+p{
+	font-size:1.0em;
+}
+h1{
+	font-size:3.0em;
+	text-align:center;	
+}
+#description{
+	font-size:1.6em;
+}
+.posttext{
+	font-size:1.25em;
+}
+.postphoto{
+	border-color:#000;
+	border-width:thick;
+	z-index:99;
+}
+.caption{
+	font-size:0.8e;
+}
+@media screen and (min-width: 800px){
+.padded{
+	padding-left:10%;
+	padding-right:10%;
+}
+}
+.padded{
+	padding-left:2%;
+	padding-right:2%;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+/*  GRID OF FOUR  */
+.span_4_of_4 {
+	width: 100%;
+}
+.span_3_of_4 {
+	width: 66%;
+	float: left;
+	padding:2%;
+}
+.span_2_of_4 {
+	width: 49.2%;
+}
+.span_1_of_4 {
+	width: 23.8%;
+	float:right;
+	background: #3D59AB;
+	padding:2%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 480px) {
+	.col {  margin: 1% 0 1% 0%; }
+	.span_1_of_4, .span_2_of_4, .span_3_of_4, .span_4_of_4 { width: 100%; }
+}
+
+.title{
+	background: #3D59AB;
+	padding:2%;
+	margin-bottom:-2%;
+}
+#post{
+	border:#000 thick;
+}
+	
+		</style>
+    </head>
+    <body>
+    <div class="padded">
+    <div class="title">
+        <h1>{Title}</h1>
+        </div>
+<div class="section group">
+       <div class="col span_1_of_4">
+        {block:Description}
+            <p id="description">{Description}</p>
+        {/block:Description}
+	</div>
+<div class="col span_3_of_4">
+        <ol id="posts">
+            {block:Posts}{block:Text}
+                    <li class="posttext" id="post">
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}{Body}
+                    </li>
+                {/block:Text}{block:Photo}
+                    <li class="postphoto" id="post">
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Photo}{block:Panorama}
+                    <li class="postpanorama" id="post">
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                        {LinkCloseTag}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Panorama}{block:Photoset}
+                    <li class="post photoset" id="post">
+                        {Photoset-500}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Photoset}{block:Quote}
+                    <li class="postquote" id="post">
+                        "{Quote}"
+
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                    </li>
+                {/block:Quote}{block:Link}
+                    <li class="postlink" id="post">
+                        <a href="{URL}" class="link" {Target}>{Name}</a>
+
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </li>
+                {/block:Link}{block:Chat}
+                    <li class="postchat" id="post">
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
+
+                        <ul class="chat">
+                            {block:Lines}
+                                <li class="{Alt} user_{UserNumber}">
+                                    {block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}{Line}
+                                </li>
+                            {/block:Lines}
+                        </ul>
+                    </li>
+                {/block:Chat}{block:Video}
+                    <li class="post video">
+                        {Video-500}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Video}{block:Audio}
+                    <li class="post audio">
+                        {AudioEmbed}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                {/block:Audio}{/block:Posts}
+        </ol>
+
+        <p id="footer">
+            {block:PreviousPage}
+                <a href="{PreviousPage}">&#171; Previous</a>
+            {/block:PreviousPage}{block:NextPage}
+                <a href="{NextPage}">Next &#187;</a>
+            {/block:NextPage}
+
+            <a href="/archive">Archive</a>
+        </p>	
+        </div>
+ 
+    </div>
+        </div>
+    </body>
+</html>
